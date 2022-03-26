@@ -1,6 +1,17 @@
 <template>
-  <div class="wrapper">
-    <div class="btn-box"><div class="btn" /></div>
+  <div class="wrapper" :style="{ top: positionY + 'px' }">
+    <div
+      class="btn-box"
+      @mousedown="down"
+      @touchstart.stop="down"
+      @mousemove="move"
+      @touchmove.stop="move"
+      @mouseup="end"
+      @touchend.stop="end"
+      @click="showRewardDesc"
+    >
+      <div class="btn" />
+    </div>
 
     <div class="title-box">
       <div>
@@ -19,42 +30,110 @@
     <div class="info-box">
       <div>상세</div>
       <div class="info">
-        <div>
-          <span>우리학교에서</span>
-          <p>50m</p>
-        </div>
-        <div>
-          <span>주소</span>
-          <p>주소주소주소주소</p>
-        </div>
+        <span>우리학교에서</span>
+        <p>50m</p>
+        <span>주소</span>
+        <p>주소주소주소주소</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      isUp: false,
+      flags: false,
+      now: null,
+      position: window.screen.height - 110,
+    }
+  },
+
+  computed: {
+    positionY() {
+      return this.position
+    },
+  },
+
+  methods: {
+    down(event) {
+      this.flags = true
+      var touch
+      if (event.touches) {
+        touch = event.touches[0]
+      } else {
+        touch = event
+      }
+      this.now = touch.clientY
+    },
+
+    move() {
+      if (this.flags) {
+        var touch
+        if (event.touches) {
+          touch = event.touches[0]
+        } else {
+          touch = event
+        }
+
+        if (
+          touch.clientY > window.screen.height - 310 &&
+          touch.clientY < window.screen.height - 110
+        ) {
+          this.position = touch.clientY
+        }
+
+        document.addEventListener(
+          'touchmove',
+          function () {
+            event.preventDefault()
+          },
+          false
+        )
+      }
+    },
+
+    end(event) {
+      var touch
+      if (event.touches) {
+        touch = event.changedTouches[0]
+      } else {
+        touch = event
+      }
+      this.now < touch.clientY ? (this.isUp = false) : (this.isUp = true)
+      this.isUp
+        ? (this.position = window.screen.height - 310)
+        : (this.position = window.screen.height - 110)
+      this.flags = false
+    },
+  },
+}
 </script>
 
 <style scoped>
 .wrapper {
   width: 100%;
+  height: 330px;
   padding: 11px;
   background-color: rgba(248, 248, 248, 0.9);
-  position: absolute;
-  bottom: -260px;
+  position: fixed;
+  top: 100%;
   border-radius: 10px 10px 0 0;
   box-sizing: border-box;
   row-gap: 30px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  transition: all 0.1s linear;
 }
 
 .btn-box {
   width: 100%;
   display: flex;
+  padding: 10px 0;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -121,5 +200,18 @@ export default {}
   padding: 7px 15px;
   border-radius: 10px;
   box-sizing: border-box;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.info span {
+  color: #969696;
+  margin: 5px;
+}
+.info p {
+  color: #000000;
+  margin: 5px;
 }
 </style>
