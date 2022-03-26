@@ -1,10 +1,13 @@
 <template>
-  <div id="map" style="height: 100%"></div>
-  <img src="../assets/location.svg" />
-  <matjip-tap />
+  <div class="background">
+    <div id="map" style="height: 100%"></div>
+    <img src="../assets/location.svg" />
+    <matjip-tap />
+  </div>
 </template>
 <script>
 import MatjipTap from './MatjipTap.vue'
+
 export default {
   components: { MatjipTap },
   data() {
@@ -44,6 +47,13 @@ export default {
 </script>
 
 <style>
+.background {
+  width: 100%;
+  height: 100vh;
+  touch-action: none;
+  overflow: none;
+}
+
 img {
   position: absolute;
   z-index: 2;
