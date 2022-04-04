@@ -2,14 +2,11 @@
   <div class="background">
     <div id="map" style="height: 100%"></div>
     <img src="../assets/location.svg" />
-    <matjip-tap />
   </div>
 </template>
-<script>
-import MatjipTap from './MatjipTap.vue'
 
+<script>
 export default {
-  components: { MatjipTap },
   data() {
     return {
       Cupertino: null,
