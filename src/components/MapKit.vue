@@ -1,7 +1,6 @@
 <template>
   <div class="background">
     <div id="map" style="height: 100%"></div>
-    <img src="../assets/location.svg" />
   </div>
 </template>
 
@@ -33,10 +32,6 @@ export default {
     )
     var map = new mapkit.Map('map')
 
-    map.addEventListener('region-change-end', function () {
-      console.log(map.center)
-    })
-
     map.showItems([myAnnotation])
     map.region = this.Cupertino
   },
@@ -49,13 +44,5 @@ export default {
   height: 100vh;
   touch-action: none;
   overflow: none;
-}
-
-img {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 </style>
