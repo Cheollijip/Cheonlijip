@@ -9,6 +9,7 @@
       @mouseup="end"
       @touchend.stop="end"
       @click="showRewardDesc"
+      @touchcancel="cancel"
     >
       <div class="btn" />
     </div>
@@ -78,7 +79,7 @@ export default {
       this.now = touch.clientY
     },
 
-    move() {
+    move(event) {
       if (this.flags) {
         var touch
         if (event.touches) {
@@ -88,9 +89,10 @@ export default {
         }
 
         if (
-          touch.clientY > window.screen.height - this.close &&
-          touch.clientY < window.screen.height - this.open
+          touch.clientY > window.innerHeight - this.close &&
+          touch.clientY < window.innerHeight - this.open + 20
         ) {
+          console.log(touch.clientY)
           this.position = touch.clientY
         }
 
@@ -115,6 +117,10 @@ export default {
       this.isUp
         ? (this.position = window.innerHeight - this.close)
         : (this.position = window.innerHeight - this.open)
+      this.flags = false
+    },
+
+    cancel() {
       this.flags = false
     },
   },
