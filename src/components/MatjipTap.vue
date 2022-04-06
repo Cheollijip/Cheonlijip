@@ -113,8 +113,8 @@ export default {
       }
       this.now < touch.clientY ? (this.isUp = false) : (this.isUp = true)
       this.isUp
-        ? (this.position = window.screen.height - this.close)
-        : (this.position = window.screen.height - this.open)
+        ? (this.position = window.innerHeight - this.close)
+        : (this.position = window.innerHeight - this.open)
       this.flags = false
     },
   },
