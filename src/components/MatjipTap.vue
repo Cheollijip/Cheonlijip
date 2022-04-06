@@ -49,7 +49,19 @@ export default {
       position: window.screen.height - 110,
     }
   },
+  mounted() {
+    let vh = window.innerHeight * 0.01
+    console.log(window.innerHeight, 'asd')
+    this.position = vh * 100 - 110
+    console.log(window.screen.height - 110, vh - 110, window.innerHeight)
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
 
+    window.addEventListener('resize', () => {
+      let vh = window.innerHeight * 0.01
+      this.position = vh * 100 - 110
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    })
+  },
   computed: {
     positionY() {
       return this.position
