@@ -12,6 +12,7 @@ export default {
     }
   },
   mounted() {
+    console.log(import.meta.env.VITE_MAPKIT_KEY)
     mapkit.init({
       authorizationCallback: function (done) {
         done(import.meta.env.VITE_MAPKIT_KEY)
