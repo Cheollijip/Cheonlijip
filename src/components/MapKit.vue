@@ -12,12 +12,6 @@ export default {
     }
   },
   mounted() {
-    console.log(
-      process.env,
-      process.env.VUE_APP_BASE_URL,
-      import.meta.env.VITE_MAPKIT_KEY,
-      '%VITE_MAPKIT_KEY%'
-    )
     mapkit.init({
       authorizationCallback: function (done) {
         done(import.meta.env.VITE_MAPKIT_KEY)
