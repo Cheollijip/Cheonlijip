@@ -23,10 +23,8 @@ jobs:
 
       - name: Generate Environment Variables File for Production
         run: |
-          echo "VUE_APP_BASE_URL=$VUE_APP_BASE_URL" >> .env.production
           echo "VITE_MAPKIT_KEY=$VITE_MAPKIT_KEY" >> .env.production
         env:
-          VUE_APP_BASE_URL: ${{ secrets.VUE_APP_BASE_URL }}
           VITE_MAPKIT_KEY: ${{ secrets.VITE_MAPKIT_KEY }}
 
       - name: Install Dependencies
