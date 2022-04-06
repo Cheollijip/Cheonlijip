@@ -46,20 +46,18 @@ export default {
       isUp: false,
       flags: false,
       now: null,
+      close: 330,
+      open: 110,
       position: window.screen.height - 110,
     }
   },
   mounted() {
     let vh = window.innerHeight * 0.01
-    console.log(window.innerHeight, 'asd')
-    this.position = vh * 100 - 110
-    console.log(window.screen.height - 110, vh - 110, window.innerHeight)
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
+    this.position = vh * 100 - this.open
 
     window.addEventListener('resize', () => {
       let vh = window.innerHeight * 0.01
-      this.position = vh * 100 - 110
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
+      this.position = vh * 100 - this.open
     })
   },
   computed: {
@@ -90,8 +88,8 @@ export default {
         }
 
         if (
-          touch.clientY > window.screen.height - 310 &&
-          touch.clientY < window.screen.height - 110
+          touch.clientY > window.screen.height - this.close &&
+          touch.clientY < window.screen.height - this.open
         ) {
           this.position = touch.clientY
         }
@@ -115,8 +113,8 @@ export default {
       }
       this.now < touch.clientY ? (this.isUp = false) : (this.isUp = true)
       this.isUp
-        ? (this.position = window.screen.height - 310)
-        : (this.position = window.screen.height - 110)
+        ? (this.position = window.screen.height - this.close)
+        : (this.position = window.screen.height - this.open)
       this.flags = false
     },
   },
