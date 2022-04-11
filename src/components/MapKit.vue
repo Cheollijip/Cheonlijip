@@ -44,5 +44,6 @@ export default {
   height: 100vh;
   touch-action: none;
   overflow: none;
+  position: relative;
 }
 </style>
