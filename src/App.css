@@ -9,7 +9,15 @@ body {
   padding: 0;
   overflow: hidden;
   touch-action: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   @supports (-webkit-touch-callout: none) {
     height: -webkit-fill-available;
+  }
+  @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+    min-height: -webkit-fill-available;
   }
 }
