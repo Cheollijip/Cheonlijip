@@ -134,6 +134,7 @@ export default {
   padding: 11px;
   background-color: rgba(248, 248, 248, 0.9);
   position: fixed;
+  touch-action: none;
   top: 100%;
   border-radius: 10px 10px 0 0;
   box-sizing: border-box;
