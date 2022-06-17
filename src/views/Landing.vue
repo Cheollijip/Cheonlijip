@@ -32,9 +32,11 @@
 }
 
 .Mock-up {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 img {
@@ -44,15 +46,15 @@ img {
 
 .left {
   position: relative;
-  top: 130px;
   left: 35px;
+  top: -30px;
   animation: bound 4s infinite;
 }
 
 .right {
   position: relative;
-  top: 200px;
-  left: -40px;
+  top: 40px;
+  left: -20px;
   z-index: 2;
   animation: bound 4.1s infinite;
 }
