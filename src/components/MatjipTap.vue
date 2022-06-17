@@ -16,11 +16,13 @@
 
     <div class="title-box">
       <div>
-        <span>천리집</span>
-        <p>개쩌는 국밥집</p>
+        <span>{{ choiceMatjip.name }}</span>
+        <p>{{ choiceMatjip.description }}</p>
       </div>
 
-      <div class="score">4.9 / 5</div>
+      <div class="score">
+        {{ Math.round(choiceMatjip.score * 10) / 10 }} / 5
+      </div>
     </div>
 
     <div class="point-btn-box">
@@ -32,15 +34,16 @@
       <div>상세</div>
       <div class="info">
         <span>우리학교에서</span>
-        <p>50m</p>
+        <p>{{ choiceMatjip.distance }}m</p>
         <span>주소</span>
-        <p>주소주소주소주소</p>
+        <p>{{ choiceMatjip.address }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -60,8 +63,11 @@ export default {
       let vh = window.innerHeight * 0.01
       this.position = vh * 100 - this.open
     })
+
+    console.log(this.choiceMatjip)
   },
   computed: {
+    ...mapState(['choiceMatjip']),
     positionY() {
       return this.position
     },
