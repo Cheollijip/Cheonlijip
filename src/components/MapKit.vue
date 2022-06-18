@@ -76,9 +76,7 @@ export default {
       map.region = this.Cupertino
     },
   },
-  created() {
-    this.fetchMatjipList(this.$route.params.token)
-  },
+
   mounted() {
     console.log(this.$route.params.token)
     setTimeout(() => {
