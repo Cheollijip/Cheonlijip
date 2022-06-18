@@ -26,7 +26,9 @@
     </div>
 
     <div class="point-btn-box">
-      <button class="point-btn" @click="scoreUpDate">평점 등록하기</button>
+      <button class="point-btn" @click.prevent="scoreUpDate">
+        평점 등록하기
+      </button>
       <button class="plus-btn">...</button>
     </div>
 
@@ -65,7 +67,7 @@ export default {
       this.position = vh * 100 - this.open
     })
 
-    window.addEventListener('scoreUpdate', this.matjipScore(score), false)
+    // window.addEventListener('scoreUpdate', this.matjipScore(score), false)
   },
   computed: {
     ...mapState(['choiceMatjip']),
@@ -76,7 +78,9 @@ export default {
 
   methods: {
     scoreUpDate() {
-      sendBridgeEvent('score', '')
+      window.webkit.messageHandlers.webViewMessageHandler.postMessage('score')
+      alert('asd')
+      // sendBridgeEvent('score', '')
     },
 
     matjipScore(score) {
