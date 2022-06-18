@@ -284,6 +284,10 @@ export default {
   border: none;
   border-radius: 10px;
   font-size: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .info {
