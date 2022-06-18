@@ -252,7 +252,6 @@ export default {
   color: white;
   background-color: gray;
   border: none;
-  max-width: 400px;
   width: 100%;
   height: 44px;
   border-radius: 10px;
@@ -266,7 +265,6 @@ export default {
   color: white;
   background-color: #34c557;
   border: none;
-  max-width: 400px;
   width: 100%;
   height: 44px;
   border-radius: 10px;
@@ -291,7 +289,6 @@ export default {
 }
 
 .info {
-  max-width: 400px;
   width: 100%;
   background-color: white;
   padding: 7px 15px;
