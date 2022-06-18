@@ -20,7 +20,7 @@ const mutations = {
     state.choiceMatjip = data
   },
   SCORE_UPDATE(state, data) {
-    state.choiceMatjip = { ...state.choiceMatjip, score: data }
+    state.choiceMatjip = { ...state.choiceMatjip, score: data, is_scored: true }
   },
 }
 
