@@ -6,7 +6,7 @@ import MatjipCreate from '../views/MatjipCreate.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: Main },
+    { path: '/:token', component: Main },
     { path: '/landing', component: Landing },
     { path: '/create', component: MatjipCreate },
   ],
