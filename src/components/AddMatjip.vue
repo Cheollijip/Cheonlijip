@@ -6,13 +6,22 @@
 </template>
 
 <script>
+import { sendBridgeEvent } from '../utils/Bridge'
 export default {
   data() {
     return {
       Cupertino: null,
+      center: {},
     }
   },
+  methods: {
+    matjipPosition() {
+      sendBridgeEvent('position', center)
+      return center
+    },
+  },
   mounted() {
+    window.getCenter = () => this.matjipPosition()
     mapkit.init({
       authorizationCallback: function (done) {
         done(import.meta.env.VITE_MAPKIT_KEY)
@@ -28,6 +37,7 @@ export default {
 
     map.addEventListener('region-change-end', function () {
       console.log(map.center)
+      this.center = map.center
     })
 
     map.region = this.Cupertino
