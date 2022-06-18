@@ -1,16 +1,18 @@
 <template>
-  <div class="wrapper" :style="{ top: positionY + 'px' }" v-if="choiceMatjip">
-    <div
-      class="btn-box"
-      @mousedown="down"
-      @touchstart.stop="down"
-      @mousemove="move"
-      @touchmove.stop="move"
-      @mouseup="end"
-      @touchend.stop="end"
-      @click="showRewardDesc"
-      @touchcancel="cancel"
-    >
+  <div
+    class="wrapper"
+    :style="{ top: positionY + 'px' }"
+    v-if="choiceMatjip"
+    @mousedown="down"
+    @touchstart.stop="down"
+    @mousemove="move"
+    @touchmove.stop="move"
+    @mouseup="end"
+    @touchend.stop="end"
+    @click="showRewardDesc"
+    @touchcancel="cancel"
+  >
+    <div class="btn-box">
       <div class="btn" />
     </div>
 
@@ -25,7 +27,16 @@
       </div>
     </div>
 
-    <div class="point-btn-box">
+    <div
+      class="point-btn-box"
+      @mousedown.stop=""
+      @touchstart.stop=""
+      @mousemove.stop=""
+      @touchmove.stop=""
+      @mouseup.stop=""
+      @touchend.stop=""
+      @touchcancel.stop=""
+    >
       <button
         class="point-btn-false"
         @click.prevent="scoreUpDate"
@@ -38,7 +49,16 @@
       <button class="plus-btn">...</button>
     </div>
 
-    <div class="info-box">
+    <div
+      class="info-box"
+      @mousedown.stop=""
+      @touchstart.stop=""
+      @mousemove.stop=""
+      @touchmove.stop=""
+      @mouseup.stop=""
+      @touchend.stop=""
+      @touchcancel.stop=""
+    >
       <div>상세</div>
       <div class="info">
         <span>우리학교에서</span>
