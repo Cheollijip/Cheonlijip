@@ -11,7 +11,6 @@ export default {
   data() {
     return {
       Cupertino: null,
-      dataa: {},
     }
   },
   computed: {
@@ -19,7 +18,7 @@ export default {
   },
   methods: {
     ...mapMutations(['CHOICE_MATJIP']),
-    ...mapActions(['fetchMatjipList']),
+    ...mapActions(['fetchMatjipList', 'upDateMatjipScore']),
 
     mapFetch() {
       mapkit.init({
@@ -31,7 +30,6 @@ export default {
 
       const choiceDataFetch = (data) => {
         this.CHOICE_MATJIP(data)
-        console.log('asdsdadasd')
       }
 
       var calloutDelegate = {
@@ -79,9 +77,10 @@ export default {
     },
   },
   created() {
-    this.fetchMatjipList()
+    this.fetchMatjipList(this.$route.params.token)
   },
   mounted() {
+    console.log(this.$route.params.token)
     setTimeout(() => {
       this.mapFetch()
     }, 1000)
