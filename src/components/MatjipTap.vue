@@ -78,9 +78,9 @@ export default {
 
   methods: {
     scoreUpDate() {
-      window.webkit.messageHandlers.webViewMessageHandler.postMessage('score')
+      // window.webkit.messageHandlers.webViewMessageHandler.postMessage('score')
       alert('asd')
-      // sendBridgeEvent('score', '')
+      sendBridgeEvent('score', '')
     },
 
     matjipScore(score) {
