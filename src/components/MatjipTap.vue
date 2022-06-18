@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :style="{ top: positionY + 'px' }">
+  <div class="wrapper" :style="{ top: positionY + 'px' }" v-if="choiceMatjip">
     <div
       class="btn-box"
       @mousedown="down"
@@ -26,9 +26,15 @@
     </div>
 
     <div class="point-btn-box">
-      <button class="point-btn" @click.prevent="scoreUpDate">
-        평점 등록하기
+      <button
+        class="point-btn-false"
+        @click.prevent="scoreUpDate"
+        v-if="!choiceMatjip.is_scored"
+      >
+        <div class="shap">#</div>
+        평점 주기
       </button>
+      <button class="point-btn-true" v-else>이미 평점을 입력하였습니다.</button>
       <button class="plus-btn">...</button>
     </div>
 
@@ -208,7 +214,34 @@ export default {
   align-items: center;
 }
 
-.point-btn {
+.shap {
+  width: 27px;
+  height: 27px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #34c557;
+  background-color: white;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.point-btn-true {
+  font-size: 17px;
+  color: white;
+  background-color: gray;
+  border: none;
+  max-width: 400px;
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.point-btn-false {
   font-size: 17px;
   color: white;
   background-color: #34c557;
@@ -217,6 +250,9 @@ export default {
   width: 100%;
   height: 44px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .plus-btn {
