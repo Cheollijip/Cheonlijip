@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import axios from 'axios'
+import { instance } from '../utils/axios'
 
 const state = {
   isOpenMenu: true,
@@ -18,17 +19,39 @@ const mutations = {
     console.log(data)
     state.choiceMatjip = data
   },
+  SCORE_UPDATE(state, data) {
+    state.choiceMatjip = { ...state.choiceMatjip, score: data }
+  },
 }
 
 const actions = {
-  fetchMatjipList({ commit }) {
-    axios
-      .get('http://211.38.86.92:8090/matjibs')
+  fetchMatjipList({ commit }, token) {
+    instance
+      .get('/matjibs', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         commit('FETCH_MATJIP_LIST', res.data)
         commit('CHOICE_MATJIP', res.data[0])
       })
       .catch((error) => console.log(error))
+  },
+  upDateMatjipScore({ commit }, { matjip_id, score, token }) {
+    instance
+      .post(
+        `/matjibs/${matjip_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        { score: score }
+      )
+      .then((res) => {
+        commit('SCORE_UPDATE', res.data)
+      })
   },
 }
 
