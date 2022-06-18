@@ -23,12 +23,7 @@ const mutations = {
 const actions = {
   fetchMatjipList({ commit }) {
     axios
-      .get('http://211.38.86.92:8090/matjibs', {
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU0Nzc5NTAsInN1YiI6IjYyYWM5NmJlZjQ5Yzg1MzE4MDk4MWI1ZiIsInRlc3QiOiJ0ZXN0In0.Sp_BJlj5i7-lIE2mIfXBN9uPCXBpkKWOYvWw7Bm_5WU',
-        },
-      })
+      .get('http://211.38.86.92:8090/matjibs')
       .then((res) => {
         commit('FETCH_MATJIP_LIST', res.data)
         commit('CHOICE_MATJIP', res.data[0])
