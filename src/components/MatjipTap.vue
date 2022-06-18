@@ -26,7 +26,7 @@
     </div>
 
     <div class="point-btn-box">
-      <button class="point-btn">평점 등록하기</button>
+      <button class="point-btn" @click="scoreUpDate">평점 등록하기</button>
       <button class="plus-btn">...</button>
     </div>
 
@@ -44,6 +44,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { sendBridgeEvent } from '../utils/Bridge'
 export default {
   data() {
     return {
@@ -64,7 +65,7 @@ export default {
       this.position = vh * 100 - this.open
     })
 
-    console.log(this.choiceMatjip)
+    window.addEventListener('scoreUpdate', this.matjipScore(score), false)
   },
   computed: {
     ...mapState(['choiceMatjip']),
@@ -74,6 +75,17 @@ export default {
   },
 
   methods: {
+    scoreUpDate() {
+      sendBridgeEvent('score', '')
+    },
+
+    matjipScore(score) {
+      upDateMatjipScore({
+        matjip_id: this.choiceMatjip.matjibId,
+        score: score,
+      })
+    },
+
     down(event) {
       this.flags = true
       var touch
