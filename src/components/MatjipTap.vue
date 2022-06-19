@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { sendBridgeEvent } from '../utils/Bridge'
 export default {
   data() {
@@ -93,8 +93,10 @@ export default {
       this.position = vh * 100 - this.open
     })
 
+    const thisCopy = this
     window.updateScore = function (score) {
-      this.matjipScore(score)
+      console.log(thisCopy)
+      thisCopy.matjipScore(score)
     }
   },
   computed: {
@@ -105,12 +107,12 @@ export default {
   },
 
   methods: {
+    ...mapActions(['upDateMatjipScore']),
     scoreUpDate() {
       sendBridgeEvent('score', '')
     },
 
     matjipScore(score) {
-      alert(score)
       this.upDateMatjipScore({
         matjip_id: this.choiceMatjip.matjibId,
         score: score,
