@@ -1,5 +1,5 @@
 <template>
-  <div @click="asd()">asd</div>
+  <h1>{{ center }}</h1>
   <div class="background">
     <div id="map" style="height: 100%"></div>
     <img src="../assets/location.svg" />
@@ -43,7 +43,10 @@ export default {
 
     map.addEventListener('region-change-end', function () {
       console.log(map.center)
-      thisCopy.center = map.center
+      thisCopy.center = {
+        lat: map.center.latitude,
+        lng: map.center.longitude,
+      }
       VueCookies.set('center', {
         lat: map.center.latitude,
         lng: map.center.longitude,
