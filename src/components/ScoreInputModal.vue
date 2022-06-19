@@ -1,20 +1,22 @@
 <template>
   <transition>
-    <div v-if="isOpenModal" class="modal">
-      <div class="title">평점</div>
-      <div class="number-list">
-        <div v-for="i in [1, 2, 3, 4, 5]" :key="i">
-          <div
-            @click="score = i"
-            :class="score === i ? 'number-choice' : 'number'"
-          >
-            {{ i }}
+    <div v-if="isOpenModal" class="background">
+      <div class="modal">
+        <div class="title">평점</div>
+        <div class="number-list">
+          <div v-for="i in [1, 2, 3, 4, 5]" :key="i">
+            <div
+              @click="score = i"
+              :class="score === i ? 'number-choice' : 'number'"
+            >
+              {{ i }}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="btn-box">
-        <div class="cancel-btn" @click="IS_OPEN_MODAL(false)">Cancel</div>
-        <div class="okay-btn" @click="scoreUpdate">OK</div>
+        <div class="btn-box">
+          <div class="cancel-btn" @click="IS_OPEN_MODAL(false)">Cancel</div>
+          <div class="okay-btn" @click="scoreUpdate">OK</div>
+        </div>
       </div>
     </div>
   </transition>
@@ -47,6 +49,12 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+}
+
 .modal {
   width: 250px;
   height: 150px;
