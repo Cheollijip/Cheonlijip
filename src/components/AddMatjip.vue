@@ -1,4 +1,5 @@
 <template>
+  <div @click="asd()">asd</div>
   <div class="background">
     <div id="map" style="height: 100%"></div>
     <img src="../assets/location.svg" />
@@ -7,6 +8,8 @@
 
 <script>
 import { sendBridgeEvent } from '../utils/Bridge'
+import VueCookies from 'vue-cookies'
+
 export default {
   data() {
     return {
@@ -24,9 +27,6 @@ export default {
     window.addEventListener('message', this.matjipPosition, false)
 
     const thisCopy = this
-    // window.getCenter = function () {
-    //   thisCopy.matjipPosition()
-    // }
 
     mapkit.init({
       authorizationCallback: function (done) {
@@ -44,6 +44,10 @@ export default {
     map.addEventListener('region-change-end', function () {
       console.log(map.center)
       thisCopy.center = map.center
+      VueCookies.set('center', {
+        lat: map.center.latitude,
+        lng: map.center.longitude,
+      })
     })
 
     map.region = this.Cupertino
@@ -52,6 +56,10 @@ export default {
     window.addEventListener('getCenter', this.matjipPosition, false)
   },
   methods: {
+    asd() {
+      console.log(VueCookies.get('center'))
+    },
+
     matjipPosition() {
       // sendBridgeEvent('position', this.center)
       alert(this.center)
