@@ -11,18 +11,27 @@ export default {
   data() {
     return {
       Cupertino: null,
-      center: {},
+      center: null,
     }
   },
   methods: {
     matjipPosition() {
-      sendBridgeEvent('position', center)
+      // sendBridgeEvent('position', this.center)
+      console.log(this.center)
       return this.center
     },
   },
+  created() {
+    window.getCenter = this.matjipPosition
+  },
   mounted() {
     window.addEventListener('getCenter', this.matjipPosition, false)
-    window.getCenter = () => this.matjipPosition()
+
+    const thisCopy = this
+    // window.getCenter = function () {
+    //   thisCopy.matjipPosition()
+    // }
+
     mapkit.init({
       authorizationCallback: function (done) {
         done(import.meta.env.VITE_MAPKIT_KEY)
@@ -38,7 +47,7 @@ export default {
 
     map.addEventListener('region-change-end', function () {
       console.log(map.center)
-      this.center = map.center
+      thisCopy.center = map.center
     })
 
     map.region = this.Cupertino
