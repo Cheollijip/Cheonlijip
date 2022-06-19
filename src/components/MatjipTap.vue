@@ -111,7 +111,7 @@ export default {
 
     matjipScore(score) {
       alert(score)
-      upDateMatjipScore({
+      this.upDateMatjipScore({
         matjip_id: this.choiceMatjip.matjibId,
         score: score,
       })
