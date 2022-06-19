@@ -39,7 +39,7 @@
     >
       <button
         class="point-btn-false"
-        @click.prevent="scoreUpDate"
+        @click.prevent="IS_OPEN_MODAL(true)"
         v-if="!choiceMatjip.is_scored"
       >
         <div class="shap">#</div>
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import { sendBridgeEvent } from '../utils/Bridge'
 export default {
   data() {
@@ -106,6 +106,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['IS_OPEN_MODAL']),
     ...mapActions(['upDateMatjipScore']),
     scoreUpDate() {
       sendBridgeEvent('score', '')
