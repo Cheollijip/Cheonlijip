@@ -3,12 +3,16 @@ import axios from 'axios'
 import { instance } from '../utils/axios'
 
 const state = {
+  isOpenModal: false,
   isOpenMenu: true,
   matjipList: [],
   choiceMatjip: {},
 }
 
 const mutations = {
+  IS_OPEN_MODAL(state, toggle) {
+    state.isOpenModal = toggle
+  },
   IS_OPEN_MENU(state, toggle) {
     state.isOpenMenu = toggle
   },
@@ -39,15 +43,19 @@ const actions = {
       .catch((error) => console.log(error))
   },
   upDateMatjipScore({ commit }, { matjip_id, score, token }) {
+    console.log(token)
     instance
       .post(
         `/matjibs/${matjip_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
           },
         },
-        { score: score }
+        {
+          score: score,
+        }
       )
       .then((res) => {
         commit('SCORE_UPDATE', res.data)
