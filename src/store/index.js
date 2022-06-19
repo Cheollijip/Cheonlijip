@@ -43,18 +43,15 @@ const actions = {
       .catch((error) => console.log(error))
   },
   upDateMatjipScore({ commit }, { matjip_id, score, token }) {
-    console.log(token)
     instance
       .post(
         `/matjibs/${matjip_id}`,
+        { score },
         {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-        },
-        {
-          score: score,
         }
       )
       .then((res) => {
