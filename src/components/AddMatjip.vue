@@ -21,7 +21,7 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('getCenter', () => this.matjipPosition(), false)
+    window.addEventListener('getCenter', this.matjipPosition, false)
     window.getCenter = () => this.matjipPosition()
     mapkit.init({
       authorizationCallback: function (done) {
@@ -42,6 +42,9 @@ export default {
     })
 
     map.region = this.Cupertino
+  },
+  beforeDestroy() {
+    window.addEventListener('getCenter', this.matjipPosition, false)
   },
 }
 </script>
