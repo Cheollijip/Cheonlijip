@@ -14,18 +14,14 @@ export default {
       center: null,
     }
   },
-  methods: {
-    matjipPosition() {
-      // sendBridgeEvent('position', this.center)
-      console.log(this.center)
-      return this.center
-    },
-  },
   created() {
-    window.getCenter = this.matjipPosition
+    const thisCopy = this
+    window.getCenter = function () {
+      thisCopy.matjipPosition()
+    }
   },
   mounted() {
-    window.addEventListener('getCenter', this.matjipPosition, false)
+    window.addEventListener('message', this.matjipPosition, false)
 
     const thisCopy = this
     // window.getCenter = function () {
@@ -54,6 +50,13 @@ export default {
   },
   beforeDestroy() {
     window.addEventListener('getCenter', this.matjipPosition, false)
+  },
+  methods: {
+    matjipPosition() {
+      // sendBridgeEvent('position', this.center)
+      alert(this.center)
+      return this.center
+    },
   },
 }
 </script>
