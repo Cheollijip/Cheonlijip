@@ -95,7 +95,6 @@ export default {
 
     const thisCopy = this
     window.updateScore = function (score) {
-      console.log(thisCopy)
       thisCopy.matjipScore(score)
     }
   },
@@ -113,6 +112,7 @@ export default {
     },
 
     matjipScore(score) {
+      alert(score)
       this.upDateMatjipScore({
         matjip_id: this.choiceMatjip.matjibId,
         score: score,
