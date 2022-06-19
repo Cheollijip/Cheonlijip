@@ -1,5 +1,4 @@
 <template>
-  <h1>{{ center }}</h1>
   <div class="background">
     <div id="map" style="height: 100%"></div>
     <img src="../assets/location.svg" />
