@@ -17,7 +17,7 @@ export default {
   methods: {
     matjipPosition() {
       sendBridgeEvent('position', center)
-      return center
+      return this.center
     },
   },
   mounted() {
