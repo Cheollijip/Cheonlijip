@@ -93,8 +93,9 @@ export default {
       this.position = vh * 100 - this.open
     })
 
-    window.addEventListener('updateScore', this.matjipScore, false)
-    window.updateScore = (score) => this.matjipScore(score)
+    window.updateScore = function (score) {
+      this.matjipScore(score)
+    }
   },
   computed: {
     ...mapState(['choiceMatjip']),
