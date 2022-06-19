@@ -21,6 +21,7 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener('getCenter', () => this.matjipPosition(), false)
     window.getCenter = () => this.matjipPosition()
     mapkit.init({
       authorizationCallback: function (done) {

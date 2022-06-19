@@ -93,6 +93,11 @@ export default {
       this.position = vh * 100 - this.open
     })
 
+    window.addEventListener(
+      'updateScore',
+      (score) => this.matjipScore(score),
+      false
+    )
     window.updateScore = (score) => this.matjipScore(score)
   },
   computed: {
