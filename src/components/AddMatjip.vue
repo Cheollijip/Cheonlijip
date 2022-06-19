@@ -46,10 +46,8 @@ export default {
         lat: map.center.latitude,
         lng: map.center.longitude,
       }
-      VueCookies.set('center', {
-        lat: map.center.latitude,
-        lng: map.center.longitude,
-      })
+      VueCookies.set('lat', map.center.latitude)
+      VueCookies.set('lng', map.center.longitude)
     })
 
     map.region = this.Cupertino
