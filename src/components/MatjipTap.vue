@@ -92,11 +92,6 @@ export default {
       let vh = window.innerHeight * 0.01
       this.position = vh * 100 - this.open
     })
-
-    const thisCopy = this
-    window.updateScore = function (score) {
-      thisCopy.matjipScore(score)
-    }
   },
   computed: {
     ...mapState(['choiceMatjip']),
@@ -110,14 +105,6 @@ export default {
     ...mapActions(['upDateMatjipScore']),
     scoreUpDate() {
       sendBridgeEvent('score', '')
-    },
-
-    matjipScore(score) {
-      alert(score)
-      this.upDateMatjipScore({
-        matjip_id: this.choiceMatjip.matjibId,
-        score: score,
-      })
     },
 
     down(event) {
