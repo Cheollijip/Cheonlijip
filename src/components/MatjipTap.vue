@@ -103,9 +103,6 @@ export default {
   methods: {
     ...mapMutations(['IS_OPEN_MODAL']),
     ...mapActions(['upDateMatjipScore']),
-    scoreUpDate() {
-      sendBridgeEvent('score', '')
-    },
 
     down(event) {
       this.flags = true
